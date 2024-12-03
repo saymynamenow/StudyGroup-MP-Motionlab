@@ -1,4 +1,4 @@
-### Slicing UI Motion Lab #2
+# Slicing UI Motion Lab #2
 
 ## Definisi
 
@@ -9,11 +9,11 @@ Widget adalah komponen yang saling terhubung untuk membentuk UI di Flutter, seti
 Itu seperti pohon dan akar, like decission tree in ML.
 Ex : MyApp > MaterialApp > Scaffold > Container
 
-# MaterialApp
+### MaterialApp
 
 Adalah widget root dalam aplikasi flutter yang meingimplementasikan desain material design menyediakan konfigurasi dasar dari project tersebut
 
-# Scaffold
+### Scaffold
 
 Setiap halaman dalam Flutter biasanya memiliki Scaffold sebagai widget utama
 
@@ -41,4 +41,4 @@ Setiap halaman dalam Flutter biasanya memiliki Scaffold sebagai widget utama
        Widget yang bisa menyimpan satu/lebih widget secara horizontal
        MainAxis - Secara Horizontal
 
-# NB : Kalau mau import image secara local harus config di pubspec.yaml
+### NB : Kalau mau import image secara local harus config di pubspec.yaml
