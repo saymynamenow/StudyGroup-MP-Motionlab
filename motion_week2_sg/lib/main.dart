@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motion_week2_sg/pages/login_page.dart';
+import 'package:motion_week2_sg/pages/register_page.dart';
 
 void main() {
   runApp(const MyWidget());
@@ -10,7 +12,11 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PageShop(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+      },
     );
   }
 }
@@ -37,13 +43,13 @@ class PageShop extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Product> products = [
       Product("Mi Band 8 Pro", 54, "assets/images/product.png",
-          Color(0xfFf3f1ed), true),
+          const Color(0xfFf3f1ed), true),
       Product("Lycra Men's Shirt", 12, "assets/images/product2.png",
-          Color(0xfff5f9e0), false),
+          const Color(0xfff5f9e0), false),
       Product("Siberia 800", 45, "assets/images/product3.png",
-          Color(0xFFf5f9e0), false),
+          const Color(0xFFf5f9e0), false),
       Product("Strawberry Frappuccino", 35, "assets/images/product4.png",
-          Color(0xfFfae4e6), false)
+          const Color(0xfFfae4e6), false)
     ];
     List<String> category = ["Watch", "Shirt", "Shoes", "Pants"];
     return Scaffold(
@@ -66,13 +72,13 @@ class PageShop extends StatelessWidget {
                     width: 50,
                     height: 50,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.shopping_bag_outlined,
                     size: 35,
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 67,
               ),
               Expanded(
@@ -80,31 +86,31 @@ class PageShop extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Our way of loving\nyou back",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       TextField(
                         decoration: InputDecoration(
-                            fillColor: Color(0xFFF2F2F2),
+                            fillColor: const Color(0xFFF2F2F2),
                             filled: true,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: BorderSide.none,
                             ),
                             hintText: 'Search',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w300),
-                            prefixIcon: Icon(Icons.search_outlined)),
+                            prefixIcon: const Icon(Icons.search_outlined)),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 33,
                       ),
-                      Container(
+                      SizedBox(
                         height: 50,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -118,11 +124,12 @@ class PageShop extends StatelessWidget {
                                     height: 40,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xFF00623B),
+                                        backgroundColor:
+                                            const Color(0xFF00623B),
                                         foregroundColor: Colors.white,
                                       ),
                                       onPressed: () {},
-                                      child: Text(
+                                      child: const Text(
                                         "All",
                                         style: TextStyle(
                                             fontSize: 20,
@@ -131,7 +138,7 @@ class PageShop extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 14,
                                   )
                                 ],
@@ -145,20 +152,20 @@ class PageShop extends StatelessWidget {
                                   height: 40,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFFF2F2F2),
-                                      foregroundColor: Color(0xFF4D4D4D),
+                                      backgroundColor: const Color(0xFFF2F2F2),
+                                      foregroundColor: const Color(0xFF4D4D4D),
                                     ),
                                     onPressed: () {},
                                     child: Text(
                                       category[index - 1],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           fontFamily: 'Raleway',
                                           fontWeight: FontWeight.w300),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 14,
                                 )
                               ],
@@ -166,10 +173,10 @@ class PageShop extends StatelessWidget {
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 33,
                       ),
-                      Text(
+                      const Text(
                         "Our Best Seller",
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w600),
@@ -181,10 +188,10 @@ class PageShop extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: GridView.count(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   bottom: kBottomNavigationBarHeight + 50),
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               crossAxisCount: 2,
                               mainAxisSpacing: 115,
                               crossAxisSpacing: 15,
@@ -196,7 +203,7 @@ class PageShop extends StatelessWidget {
                                   return Wrap(
                                     children: [
                                       Container(
-                                        margin: EdgeInsets.all(1),
+                                        margin: const EdgeInsets.all(1),
                                         height: 251,
                                         width:
                                             MediaQuery.of(context).size.width *
@@ -240,16 +247,16 @@ class PageShop extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 9,
                                                   ),
                                                   Text(
-                                                    "${product.productTitle}",
-                                                    style: TextStyle(
+                                                    product.productTitle,
+                                                    style: const TextStyle(
                                                       fontSize: 12,
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 7,
                                                   ),
                                                   Row(
@@ -259,17 +266,17 @@ class PageShop extends StatelessWidget {
                                                     children: [
                                                       Text(
                                                         "\$${product.price}.00",
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             fontSize: 16,
                                                             color: Color(
                                                                 0xFF00623B)),
                                                       ),
                                                       product.isFavorite
-                                                          ? Icon(
+                                                          ? const Icon(
                                                               Icons.favorite,
                                                               color: Colors.red,
                                                             )
-                                                          : Icon(
+                                                          : const Icon(
                                                               Icons
                                                                   .favorite_rounded,
                                                               color:
@@ -301,13 +308,13 @@ class PageShop extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         height: 74,
-        color: Color(0xFF00623B),
+        color: const Color(0xFF00623B),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.home_rounded,
                 size: 30,
                 color: Colors.white,
@@ -315,7 +322,7 @@ class PageShop extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.wallet_outlined,
                 size: 30,
                 color: Color(0xFFB4DCCC),
@@ -323,7 +330,7 @@ class PageShop extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.favorite_outline_rounded,
                 size: 30,
                 color: Color(0xFFB4DCCC),
@@ -331,7 +338,7 @@ class PageShop extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications_outlined,
                 size: 30,
                 color: Color(0xFFB4DCCC),
@@ -375,7 +382,7 @@ class MainApp extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -417,7 +424,7 @@ class MainApp extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
@@ -425,13 +432,13 @@ class MainApp extends StatelessWidget {
                     print("Di Click");
                   },
                   child: Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Color(0xFF00623B),
+                      color: const Color(0xFF00623B),
                     ),
                     width: double.infinity,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Add To Bag",
                         style: TextStyle(
@@ -443,7 +450,7 @@ class MainApp extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 39,
                 )
               ],
