@@ -1,10 +1,10 @@
-### Package && State Management
+# Package && State Management
 
 ## Plugin
 
 Kumpulan kode dart yang sudah dibuat sebelumnya yang dapat diimpor dan digunakan dalam proyek flutter
 
-# Contoh Package
+### Contoh Package
 
 ```
 Contoh Package :
@@ -13,7 +13,7 @@ Google Fonts : Package yang menyediakan akses mudah ke font dari Google Fonts, s
 flutter native splash
 ```
 
-# Website yang menyarankan top package yang sering dipakai oleh developer flutter
+### Website yang menyarankan top package yang sering dipakai oleh developer flutter
 
 flutterGems : ini untuk menyarankan top package yang sering di package
 
@@ -24,11 +24,11 @@ Nah perlu di ingat _POP_ itu mengembalikan ke halaman sebelumnya dan _PUSH_ meni
 
 ## State Management
 
-# Callback Function
+### Callback Function
 
 Callback function adalah sebuah metode memanggil function di dalam function.
 
-# setState
+### setState
 
 Adalah keadaan atau informasi yang bisa berubah dalam suatu aplikasi
 
@@ -37,7 +37,7 @@ Ex : Game, poin yang dikumpulkan bagian dari state.
 Kalau mengetik di aplikasi catatan, tulisan yang dibuat itu juga state
 ```
 
-# Stateless Widget Vs Statefull Widget
+### Stateless Widget Vs Statefull Widget
 
 Statless Widget adalah widget yang constant yang tidak bisa berubah.
 Sedangkan Statefull Widget adalah widget yang bisa berubah dari satu keadaan ke keadaan lain.
