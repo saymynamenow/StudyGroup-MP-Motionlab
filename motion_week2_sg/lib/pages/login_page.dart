@@ -38,27 +38,42 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
             child: Column(
               children: [
-                CustomTextfieldWidget(
+                const CustomTextfieldWidget(
                   hintText: "Email",
+                  iconData: Icons.mail,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextfieldWidget(
+                const CustomTextfieldWidget(
                   hintText: "Password",
+                  iconData: Icons.lock,
                 ),
-                const SizedBox(
-                  height: 42,
-                ),
-                CustomButtonWidget(
+                const CustomButtonWidget(
                   buttonText: "Login",
+                  destination: '/',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "Don't Have Account? Register",
-                  style: GoogleFonts.roboto(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't Have Account? ",
+                      style: GoogleFonts.roboto(fontSize: 14),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
+                      child: Text(
+                        "Register",
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          color: const Color(0xff3a5a40),
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
             ),

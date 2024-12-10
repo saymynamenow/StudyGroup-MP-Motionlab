@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   lottie: ^3.1.3
   google_fonts: ^6.2.1
+  flutter_native_splash: ^2.4.3
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +23,10 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - assets/images/splashLogo.png
+
+flutter_native_splash:
+  color: "#00623b"
+  image: "assets/images/splashLogo.png"
+  android: true
+  ios: true

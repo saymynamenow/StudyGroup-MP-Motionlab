@@ -1,44 +1,47 @@
-### Slicing UI Motion Lab #2
+### Package && State Management
 
-## Definisi
+## Plugin
 
-Widget adalah komponen yang saling terhubung untuk membentuk UI di Flutter, setiap elemen visual di flutter adalah widget mulai dari tombol teks layout hingga animasi Flutter menggunkaan konsep widget tree.
+Kumpulan kode dart yang sudah dibuat sebelumnya yang dapat diimpor dan digunakan dalam proyek flutter
 
-## Pohon widget
+# Contoh Package
 
-Itu seperti pohon dan akar, like decission tree in ML.
-Ex : MyApp > MaterialApp > Scaffold > Container
+```
+Contoh Package :
+Lottie : Untuk menambah animasi berbasis JSON dan ditampilkan dalam aplikasi dengan mudah.
+Google Fonts : Package yang menyediakan akses mudah ke font dari Google Fonts, sehingga font dapat diimplementasikan langsung dalam aplikasi.
+flutter native splash
+```
 
-# MaterialApp
+# Website yang menyarankan top package yang sering dipakai oleh developer flutter
 
-Adalah widget root dalam aplikasi flutter yang meingimplementasikan desain material design menyediakan konfigurasi dasar dari project tersebut
+flutterGems : ini untuk menyarankan top package yang sering di package
 
-# Scaffold
+## Routing
 
-Setiap halaman dalam Flutter biasanya memiliki Scaffold sebagai widget utama
+Di flutter ada Syntax untuk berpindah dari satu halaman ke halaman lain, yaitu Navigator, nah dari navigator itu dibagi lagi ada untuk masuk ke page baru _PUSH_ dan ada juga untuk kembali ke page sebelumnya _POP_
+Nah perlu di ingat _POP_ itu mengembalikan ke halaman sebelumnya dan _PUSH_ menimpa page lama dengan page baru, jadi page sebelumnya tetap ada dan bisa kembali dengan _POP_
 
-## Widget Essential
+## State Management
 
-    1. SafeArea
-       Agar tidak bertabrakan dengan UI component di Handphone nya
-    2. Text
-       Untuk menampilkan Text
-    3. Container
-       Untuk membuat section tertentu seperti kotak atau sebagainya
-    4. Icon
-       Untuk menampilkan Icon
-    5. Image
-       Menampilkan Image
-    6. Button
-       Membuat button
+# Callback Function
 
-## Widget Layoting
+Callback function adalah sebuah metode memanggil function di dalam function.
 
-    1. Column
-       Widget yang bisa menyimpan satu/lebih widget secara vertical
-       MainAxis - Secara vertikal
-    2. Row
-       Widget yang bisa menyimpan satu/lebih widget secara horizontal
-       MainAxis - Secara Horizontal
+# setState
 
-# NB : Kalau mau import image secara local harus config di pubspec.yaml
+Adalah keadaan atau informasi yang bisa berubah dalam suatu aplikasi
+
+```
+Ex : Game, poin yang dikumpulkan bagian dari state.
+Kalau mengetik di aplikasi catatan, tulisan yang dibuat itu juga state
+```
+
+# Stateless Widget Vs Statefull Widget
+
+Statless Widget adalah widget yang constant yang tidak bisa berubah.
+Sedangkan Statefull Widget adalah widget yang bisa berubah dari satu keadaan ke keadaan lain.
+
+## NB
+
+Ada widget untuk state management seperti GetX, BloC, etc..

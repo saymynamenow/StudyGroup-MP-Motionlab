@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:motion_week2_sg/pages/register_page.dart';
 
 class CustomButtonWidget extends StatelessWidget {
-  String? buttonText;
-  CustomButtonWidget({super.key, this.buttonText});
+  final String? buttonText;
+  final String? destination;
+  const CustomButtonWidget({super.key, this.buttonText, this.destination});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/register',
-        );
+        destination != null
+            ? Navigator.pushNamed(context, destination!)
+            : Navigator.pop(context);
       },
       child: Container(
         padding: const EdgeInsets.all(18),
