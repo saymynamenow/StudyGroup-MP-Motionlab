@@ -59,9 +59,14 @@ class PageShop extends StatelessWidget {
                     width: 50,
                     height: 50,
                   ),
-                  const Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 35,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                    child: const Icon(
+                      Icons.shopping_bag_outlined,
+                      size: 35,
+                    ),
                   )
                 ],
               ),

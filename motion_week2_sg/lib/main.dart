@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:motion_week2_sg/cart.dart';
 import 'package:motion_week2_sg/pages/login_page.dart';
 import 'package:motion_week2_sg/pages/register_page.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:motion_week2_sg/pages/shop.dart';
+import 'package:motion_week2_sg/pages/transaction.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +19,14 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/cart',
       routes: {
         '/': (context) => const PageShop(),
         '/register': (context) => const RegisterPage(),
         '/login': (context) => const LoginPage(),
         '/product1': (context) => const MainApp(),
+        '/cart': (context) => cart(),
+        '/transaction': (context) => Transaction()
       },
     );
   }
@@ -111,7 +115,7 @@ class MainApp extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print("Di Click");
+                    Navigator.pushNamed(context, '/cart');
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),
