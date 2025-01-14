@@ -2,23 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
-import 'package:motion_week2_sg/controller/transaction_controller.dart';
+import 'package:motion_week2_sg/controller/cart_controller.dart';
 import 'package:motion_week2_sg/widgets/custom_button_widget.dart';
 import 'package:motion_week2_sg/widgets/invoice_item.dart';
 import 'package:intl/intl.dart';
 
 class Transaction extends StatelessWidget {
-  final transanctionControl = Get.put(TransactionController());
+  final CartController controller = Get.put(CartController());
   Transaction({super.key});
 
   @override
   Widget build(BuildContext context) {
     var now = DateTime.now();
     var formatter = DateFormat('d-M-y').format(now);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      transanctionControl.resetTransaction();
-      transanctionControl.processTransaction();
-    });
+
     return Obx(() => Scaffold(
           appBar: AppBar(
             leading: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -43,7 +40,7 @@ class Transaction extends StatelessWidget {
                       fontSize: 18, fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  "\$${transanctionControl.total.value}",
+                  "\$${controller.totalPrice}",
                   style: GoogleFonts.roboto(
                       fontSize: 27, fontWeight: FontWeight.w600),
                 ),
@@ -97,15 +94,18 @@ class Transaction extends StatelessWidget {
                 ),
                 InvoiceItem(
                   label: "Total Price",
-                  value: "\$${transanctionControl.total}",
+                  value: "\$${controller.totalPrice}",
                 ),
                 const SizedBox(
                   height: 60,
                 ),
-                const CustomButtonWidget(
+                CustomButtonWidget(
                   buttonText: "Back To Home",
                   destination: '/',
-                )
+                  onPressedCallback: () {
+                    controller.resetProduct();
+                  },
+                ),
               ],
             ),
           ),

@@ -1,0 +1,47 @@
+[
+        {
+            "id": 1,
+            "product_name": "Wireless Mouse",
+            "price": 25.99,
+            "description": "A high-quality wireless mouse with ergonomic design.",
+            "image_url": "https://example.com/images/wireless_mouse.jpg",
+            "category": "Electronics",
+            "is_like": true
+        },
+        {
+            "id": 2,
+            "product_name": "Bluetooth Speaker",
+            "price": 45.50,
+            "description": "Portable Bluetooth speaker with excellent sound quality.",
+            "image_url": "https://example.com/images/bluetooth_speaker.jpg",
+            "category": "Electronics",
+            "is_like": false
+        },
+        {
+            "id": 3,
+            "product_name": "Running Shoes",
+            "price": 60.00,
+            "description": "Comfortable running shoes for all terrains.",
+            "image_url": "https://example.com/images/running_shoes.jpg",
+            "category": "Sportswear",
+            "is_like": true
+        },
+        {
+            "id": 4,
+            "product_name": "Coffee Maker",
+            "price": 80.75,
+            "description": "Automatic coffee maker with programmable settings.",
+            "image_url": "https://example.com/images/coffee_maker.jpg",
+            "category": "Home Appliances",
+            "is_like": false
+        },
+        {
+            "id": 5,
+            "product_name": "Yoga Mat",
+            "price": 20.00,
+            "description": "Non-slip yoga mat with extra cushioning.",
+            "image_url": "https://example.com/images/yoga_mat.jpg",
+            "category": "Fitness",
+            "is_like": true
+        }
+]

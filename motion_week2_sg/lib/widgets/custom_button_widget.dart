@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomButtonWidget extends StatelessWidget {
   final String? buttonText;
   final String? destination;
-  const CustomButtonWidget({super.key, this.buttonText, this.destination});
+  final VoidCallback? onPressedCallback;
+  const CustomButtonWidget(
+      {super.key, this.buttonText, this.destination, this.onPressedCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,10 @@ class CustomButtonWidget extends StatelessWidget {
         destination != null
             ? Navigator.pushNamed(context, destination!)
             : Navigator.pop(context);
+
+        if (onPressedCallback != null) {
+          onPressedCallback!();
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(18),

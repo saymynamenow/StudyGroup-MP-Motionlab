@@ -1,44 +1,16 @@
 import 'package:flutter/material.dart';
-
-class Product {
-  String productTitle;
-  int price;
-  String imageUrl;
-  Color productColor;
-  bool isFavorite;
-  String? ulrPage;
-  Product(
-    this.productTitle,
-    this.price,
-    this.imageUrl,
-    this.productColor,
-    this.isFavorite, {
-    this.ulrPage = '',
-  });
-}
+import 'package:get/get.dart';
+import 'package:motion_week2_sg/Utils/dummy_data.dart';
+import 'package:motion_week2_sg/controller/homepage_controller.dart';
 
 class PageShop extends StatelessWidget {
-  const PageShop({super.key});
+  final HomepageController controller = Get.put(HomepageController());
+  PageShop({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = [
-      Product(
-        "Mi Band 8 Pro",
-        54,
-        "assets/images/product.png",
-        const Color(0xfFf3f1ed),
-        true,
-        ulrPage: '/product1',
-      ),
-      Product("Lycra Men's Shirt", 12, "assets/images/product2.png",
-          const Color(0xfff5f9e0), false),
-      Product("Siberia 800", 45, "assets/images/product3.png",
-          const Color(0xFFf5f9e0), false),
-      Product("Strawberry Frappuccino", 35, "assets/images/product4.png",
-          const Color(0xfFfae4e6), false)
-    ];
-    List<String> category = ["Watch", "Shirt", "Shoes", "Pants"];
+    List<String> category = DummyData.listDummyCatagory;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -106,24 +78,35 @@ class PageShop extends StatelessWidget {
                         height: 50,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: category.length + 1,
+                          itemCount: category.length,
                           itemBuilder: (BuildContext context, int index) {
-                            if (index == 0) {
-                              return Row(
+                            return Obx(
+                              () => Row(
                                 children: [
                                   SizedBox(
-                                    width: 92,
+                                    width: 120,
                                     height: 40,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            const Color(0xFF00623B),
-                                        foregroundColor: Colors.white,
+                                            controller.selectedCategory.value ==
+                                                    category[index]
+                                                ? const Color(0xFF00623a)
+                                                : Colors.white,
+                                        foregroundColor: controller
+                                                    .selectedCategory.value ==
+                                                category[index]
+                                            ? Colors
+                                                .white // Teks warna saat dipilih
+                                            : const Color(0xFF4D4D4D),
                                       ),
-                                      onPressed: () {},
-                                      child: const Text(
-                                        "All",
-                                        style: TextStyle(
+                                      onPressed: () {
+                                        controller
+                                            .selectCategory(category[index]);
+                                      },
+                                      child: Text(
+                                        category[index],
+                                        style: const TextStyle(
                                             fontSize: 20,
                                             fontFamily: 'Raleway',
                                             fontWeight: FontWeight.w300),
@@ -134,33 +117,7 @@ class PageShop extends StatelessWidget {
                                     width: 14,
                                   )
                                 ],
-                              );
-                            }
-
-                            return Row(
-                              children: [
-                                SizedBox(
-                                  width: 120,
-                                  height: 40,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFFF2F2F2),
-                                      foregroundColor: const Color(0xFF4D4D4D),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      category[index - 1],
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontFamily: 'Raleway',
-                                          fontWeight: FontWeight.w300),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 14,
-                                )
-                              ],
+                              ),
                             );
                           },
                         ),
@@ -173,134 +130,138 @@ class PageShop extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w600),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GridView.count(
-                              padding: const EdgeInsets.only(
-                                  bottom: kBottomNavigationBarHeight + 50),
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 115,
-                              crossAxisSpacing: 15,
-                              childAspectRatio: 0.9,
-                              children: List.generate(
-                                products.length,
-                                (index) {
-                                  final product = products[index];
-                                  return GestureDetector(
-                                    onTap: () {
-                                      product.ulrPage != null &&
-                                              product.ulrPage!.isNotEmpty
-                                          ? Navigator.pushNamed(
-                                              context, product.ulrPage!)
-                                          : print("Page Tidak Tersedia");
-                                    },
-                                    child: Wrap(
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.all(1),
-                                          height: 251,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.4,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(9.72),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.5),
-                                                spreadRadius: 2,
-                                                blurRadius: 7,
-                                              )
-                                            ],
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: product.productColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          9.72),
+                      Obx(
+                        () => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GridView.count(
+                                padding: const EdgeInsets.only(
+                                    bottom: kBottomNavigationBarHeight + 50),
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 115,
+                                crossAxisSpacing: 15,
+                                childAspectRatio: 0.9,
+                                children: List.generate(
+                                  controller.products.length,
+                                  (index) {
+                                    final product = controller.products[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/detail_product',
+                                          arguments: product.id,
+                                        );
+                                      },
+                                      child: Wrap(
+                                        children: [
+                                          Container(
+                                            margin: const EdgeInsets.all(1),
+                                            height: 251,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(9.72),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.5),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 7,
+                                                )
+                                              ],
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: product.productColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            9.72),
+                                                  ),
+                                                  height: 187,
+                                                  child: Image.asset(
+                                                    product.image,
+                                                    fit: BoxFit.contain,
+                                                  ),
                                                 ),
-                                                height: 187,
-                                                child: Image.asset(
-                                                  product.imageUrl,
-                                                  fit: BoxFit.contain,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 8.0),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    const SizedBox(
-                                                      height: 9,
-                                                    ),
-                                                    Text(
-                                                      product.productTitle,
-                                                      style: const TextStyle(
-                                                        fontSize: 12,
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      const SizedBox(
+                                                        height: 9,
                                                       ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 7,
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          "\$${product.price}.00",
-                                                          style: const TextStyle(
-                                                              fontSize: 16,
-                                                              color: Color(
-                                                                  0xFF00623B)),
+                                                      Text(
+                                                        product.name,
+                                                        style: const TextStyle(
+                                                          fontSize: 12,
                                                         ),
-                                                        product.isFavorite
-                                                            ? const Icon(
-                                                                Icons.favorite,
-                                                                color:
-                                                                    Colors.red,
-                                                              )
-                                                            : const Icon(
-                                                                Icons
-                                                                    .favorite_rounded,
-                                                                color:
-                                                                    Colors.grey,
-                                                              )
-                                                      ],
-                                                    ),
-                                                  ],
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 7,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            "\$${product.price.toStringAsFixed(2)}",
+                                                            style: const TextStyle(
+                                                                fontSize: 16,
+                                                                color: Color(
+                                                                    0xFF00623B)),
+                                                          ),
+                                                          product.isFavorite
+                                                              ? const Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: Colors
+                                                                      .red,
+                                                                )
+                                                              : const Icon(
+                                                                  Icons
+                                                                      .favorite_rounded,
+                                                                  color: Colors
+                                                                      .grey,
+                                                                )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),

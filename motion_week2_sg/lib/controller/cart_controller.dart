@@ -1,11 +1,39 @@
 import 'package:get/get.dart';
+import 'package:motion_week2_sg/models/product_models.dart';
 
 class CartController extends GetxController {
-  final quantity = 0.obs;
-  final quantityCart2 = 0.obs;
+  var cartProducts = <ProductModel>[].obs;
+  var quantities = <int>[].obs;
 
-  void quantityIncrement() => quantity.value++;
-  void quantityDecrement() => quantity.value--;
-  void quantityIncrement2() => quantityCart2.value++;
-  void quantityDecrement2() => quantityCart2.value--;
+  void addProduct(ProductModel product) {
+    int index = cartProducts.indexWhere((p) => p.id == product.id);
+
+    if (index != -1) {
+      quantities[index]++;
+    } else {
+      cartProducts.add(product);
+      quantities.add(1);
+    }
+  }
+
+  void quantityIncrement(int index) {
+    quantities[index]++;
+  }
+
+  void quanitityDecrement(int index) {
+    if (quantities[index] > 1) {
+      quantities[index]--;
+    } else {
+      cartProducts.removeAt(index);
+      quantities.remove(index);
+    }
+  }
+
+  void resetProduct() {
+    cartProducts.clear();
+    quantities.clear();
+  }
+
+  double get totalPrice => cartProducts.asMap().entries.fold(
+      0, (sum, entry) => sum + (entry.value.price * quantities[entry.key]));
 }

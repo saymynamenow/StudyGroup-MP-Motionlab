@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motion_week2_sg/Utils/dummy_data.dart';
+import 'package:get/get.dart';
 import 'package:motion_week2_sg/cart.dart';
+import 'package:motion_week2_sg/controller/cart_controller.dart';
+import 'package:motion_week2_sg/models/product_models.dart';
 import 'package:motion_week2_sg/pages/login_page.dart';
 import 'package:motion_week2_sg/pages/register_page.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -21,10 +25,10 @@ class MyWidget extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/cart',
       routes: {
-        '/': (context) => const PageShop(),
+        '/': (context) => PageShop(),
         '/register': (context) => const RegisterPage(),
         '/login': (context) => const LoginPage(),
-        '/product1': (context) => const MainApp(),
+        '/detail_product': (context) => MainApp(),
         '/cart': (context) => cart(),
         '/transaction': (context) => Transaction()
       },
@@ -33,10 +37,15 @@ class MyWidget extends StatelessWidget {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final CartController cartController = Get.put(CartController());
+  MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final String id = ModalRoute.of(context)!.settings.arguments as String;
+
+    final ProductModel product =
+        DummyData.DummyProduct.firstWhere((product) => product.id == id);
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
@@ -61,10 +70,10 @@ class MainApp extends StatelessWidget {
                       "Product Details",
                       style: TextStyle(fontSize: 22),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.favorite,
                       size: 33,
-                      color: Colors.red,
+                      color: product.isFavorite ? Colors.red : Colors.grey,
                     )
                   ],
                 ),
@@ -77,7 +86,7 @@ class MainApp extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          "assets/images/productsPage.png",
+                          product.image,
                           width: double.infinity,
                           height: 401,
                           fit: BoxFit.cover,
@@ -85,16 +94,16 @@ class MainApp extends StatelessWidget {
                         const SizedBox(
                           height: 15,
                         ),
-                        const Text(
-                          "Mi Band 8 Pro",
-                          style: TextStyle(fontSize: 30),
+                        Text(
+                          product.name,
+                          style: const TextStyle(fontSize: 30),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          "\$54.00",
-                          style: TextStyle(
+                        Text(
+                          '\$${product.price}',
+                          style: const TextStyle(
                             fontSize: 20,
                             color: Color(0xFF00623B),
                           ),
@@ -102,9 +111,9 @@ class MainApp extends StatelessWidget {
                         const SizedBox(
                           height: 19,
                         ),
-                        const Text(
-                          "Built for life and made to last, this full-zip corduroy jacket is part of our Nike Life collection. The spacious fit gives you plenty of room to layer underneath, while the soft corduroy keeps it casual and timeless.",
-                          style: TextStyle(fontSize: 18),
+                        Text(
+                          product.description,
+                          style: const TextStyle(fontSize: 18),
                         ),
                       ],
                     ),
@@ -116,6 +125,15 @@ class MainApp extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/cart');
+                    cartController.addProduct(ProductModel(
+                        id: product.id,
+                        image: product.image,
+                        name: product.name,
+                        price: product.price,
+                        description: product.description,
+                        type: product.type,
+                        isFavorite: product.isFavorite,
+                        productColor: product.productColor));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),
