@@ -33,8 +33,8 @@ class cart extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       children: [
-                        Image.asset(
-                          product.image,
+                        Image.network(
+                          product.thumbnail ?? "",
                           height: 96,
                           width: 96,
                         ),
@@ -44,7 +44,7 @@ class cart extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                product.name,
+                                product.title ?? "",
                                 style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500, fontSize: 14),
                               ),
@@ -53,7 +53,7 @@ class cart extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "\$${product.price.toStringAsFixed(2)}",
+                                    "\$${product.price}",
                                     style: GoogleFonts.inter(
                                         fontWeight: FontWeight.w300,
                                         fontSize: 14,

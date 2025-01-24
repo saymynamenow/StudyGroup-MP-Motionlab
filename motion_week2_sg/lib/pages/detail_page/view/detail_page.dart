@@ -1,51 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:motion_week2_sg/cart.dart';
+import 'package:motion_week2_sg/models/product_model_api.dart';
+import '../controller/detail_page_controller.dart';
 import 'package:motion_week2_sg/controller/cart_controller.dart';
-import 'package:motion_week2_sg/pages/detail_page/bindings/detail_product_binding.dart';
-import 'package:motion_week2_sg/pages/detail_page/controller/detail_page_controller.dart';
-import 'package:motion_week2_sg/pages/detail_page/view/detail_page.dart';
-import 'package:motion_week2_sg/pages/login_page.dart';
-import 'package:motion_week2_sg/pages/register_page.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:motion_week2_sg/pages/home_page/view/shop_page.dart';
-import 'package:motion_week2_sg/pages/transaction.dart';
 
-void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyWidget());
-  FlutterNativeSplash.remove();
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => const PageShop()),
-        GetPage(name: '/register', page: () => const RegisterPage()),
-        GetPage(name: '/login', page: () => const LoginPage()),
-        GetPage(
-            name: '/detail_product',
-            page: () => DetailPage(),
-            binding: DetailProductBinding()),
-        GetPage(
-          name: '/cart',
-          page: () => cart(),
-        ),
-        GetPage(name: '/transaction', page: () => Transaction()),
-      ],
-    );
-  }
-}
-
-class MainApp extends GetView<DetailProductController> {
+class DetailPage extends GetView<DetailProductController> {
   final CartController cartController = Get.put(CartController());
-  MainApp({super.key});
+  DetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +29,7 @@ class MainApp extends GetView<DetailProductController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -79,6 +39,9 @@ class MainApp extends GetView<DetailProductController> {
                                       Icons.chevron_left,
                                       size: 33,
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    width: 70,
                                   ),
                                   const Text(
                                     "Product Details",
@@ -144,10 +107,19 @@ class MainApp extends GetView<DetailProductController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.pushNamed(context, '/cart');
-                                  // cartController.addProduct(ProductElement(
-                                  //     id: controller.detailProduct.value.id ??
-                                  //         0));
+                                  Navigator.pushNamed(context, '/cart');
+                                  cartController.addProduct(ProductElement(
+                                    id: controller.detailProduct.value.id ?? 0,
+                                    title:
+                                        controller.detailProduct.value.title ??
+                                            "",
+                                    thumbnail: controller
+                                            .detailProduct.value.thumbnail ??
+                                        "",
+                                    price:
+                                        controller.detailProduct.value.price ??
+                                            0,
+                                  ));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(12),

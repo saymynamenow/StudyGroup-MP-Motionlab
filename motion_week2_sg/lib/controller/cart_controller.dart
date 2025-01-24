@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
-import 'package:motion_week2_sg/models/product_models.dart';
+import 'package:motion_week2_sg/models/product_model_api.dart';
+import 'package:motion_week2_sg/pages/detail_page/controller/detail_page_controller.dart';
 
 class CartController extends GetxController {
-  var cartProducts = <ProductModel>[].obs;
+  RxList<ProductElement> cartProducts = <ProductElement>[].obs;
   var quantities = <int>[].obs;
 
-  void addProduct(ProductModel product) {
+  void addProduct(ProductElement product) {
     int index = cartProducts.indexWhere((p) => p.id == product.id);
 
     if (index != -1) {
@@ -14,6 +15,7 @@ class CartController extends GetxController {
       cartProducts.add(product);
       quantities.add(1);
     }
+    Get.delete<DetailProductController>();
   }
 
   void quantityIncrement(int index) {
@@ -35,5 +37,8 @@ class CartController extends GetxController {
   }
 
   double get totalPrice => cartProducts.asMap().entries.fold(
-      0, (sum, entry) => sum + (entry.value.price * quantities[entry.key]));
+        0,
+        (sum, entry) =>
+            sum + ((entry.value.price ?? 0) * quantities[entry.key]),
+      );
 }
