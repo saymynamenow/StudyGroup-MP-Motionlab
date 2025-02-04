@@ -1,4 +1,5 @@
 import 'package:motion_week2_sg/models/product_model_api.dart';
+import 'package:motion_week2_sg/models/user_model.dart';
 import 'package:motion_week2_sg/shared/constanta.dart';
 
 class ProductService {
@@ -49,6 +50,21 @@ class ProductService {
       return null;
     } catch (e) {
       return null;
+    }
+  }
+
+  Future<UserModel> userLogin(
+      {required String username, required String password}) async {
+    try {
+      final response = await dio.post('https://dummyjson.com/auth/login',
+          data: {'username': username, 'password': password});
+      if (response.statusCode == 200 && response.data != null) {
+        return UserModel.fromJson(response.data);
+      } else {
+        throw Exception("Failed Login");
+      }
+    } catch (e) {
+      throw Exception('Username or Password Wrong');
     }
   }
 }

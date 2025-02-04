@@ -4,18 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomTextfieldWidget extends StatelessWidget {
   final String? hintText;
   final IconData? iconData;
+  final TextEditingController? editingController;
 
-  const CustomTextfieldWidget({
-    super.key,
-    this.hintText,
-    required this.iconData,
-  });
+  const CustomTextfieldWidget(
+      {super.key,
+      this.hintText,
+      required this.iconData,
+      this.editingController});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
+          controller: editingController,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

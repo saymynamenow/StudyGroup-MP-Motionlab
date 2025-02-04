@@ -123,9 +123,11 @@ class cart extends StatelessWidget {
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const SizedBox(height: 16),
-                  const CustomButtonWidget(
+                  CustomButtonWidget(
                     buttonText: "Buy Now",
-                    destination: '/transaction',
+                    function: () {
+                      Get.toNamed('/transaction');
+                    },
                   ),
                 ],
               ),

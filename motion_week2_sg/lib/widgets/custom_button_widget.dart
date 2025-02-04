@@ -3,23 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final String? buttonText;
-  final String? destination;
-  final VoidCallback? onPressedCallback;
-  const CustomButtonWidget(
-      {super.key, this.buttonText, this.destination, this.onPressedCallback});
+  final Function()? function;
+  const CustomButtonWidget({super.key, this.buttonText, this.function});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        destination != null
-            ? Navigator.pushNamed(context, destination!)
-            : Navigator.pop(context);
-
-        if (onPressedCallback != null) {
-          onPressedCallback!();
-        }
-      },
+      onTap: function,
       child: Container(
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(

@@ -101,8 +101,8 @@ class Transaction extends StatelessWidget {
                 ),
                 CustomButtonWidget(
                   buttonText: "Back To Home",
-                  destination: '/',
-                  onPressedCallback: () {
+                  function: () {
+                    Get.toNamed('/');
                     controller.resetProduct();
                   },
                 ),
