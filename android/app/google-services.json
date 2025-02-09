@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "428897764556",
+    "project_id": "motion-to-do",
+    "storage_bucket": "motion-to-do.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428897764556:android:fe34836867578bc7a66e69",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtvybApH8gG1z2vbWVYddEXQ945avosOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
