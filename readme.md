@@ -13,3 +13,5 @@ This is main branch of StudyGroup-MP-Motionlab repository
 | 04-StateManagement | [04-StateManagement](https://github.com/saymynamenow/StudyGroup-MP-Motionlab/tree/04-StateManagement) |
 | 05-Getx | [05-Getx](https://github.com/saymynamenow/StudyGroup-MP-Motionlab/tree/05-Getx) |
 | 06-API | [06-API](https://github.com/saymynamenow/StudyGroup-MP-Motionlab/tree/06-API) |
+| 07-Local Storage | [07-LocalStorage](https://github.com/saymynamenow/StudyGroup-MP-Motionlab/tree/07-LocalStorage) |
+| 08-Firebase | [08-Firebase](https://github.com/saymynamenow/StudyGroup-MP-Motionlab/tree/08-Firebase) |
